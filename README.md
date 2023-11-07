@@ -9,6 +9,8 @@ A Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors
 
 `stack_slices_pairwise_elas_field` eliminates distorsions through Gaussian Smoothed Elastic Fields. Validity is proved mathematically
 
+`plot_scatter_by_grid` of class `RegisPlotter` plots registrated sections as well as intermediate results, such as no. anchors distribution and constraints distribution
+
 ### Installation
 ```python
 git clone https://github.com/STOmics/ST-GEARS.git
@@ -22,7 +24,7 @@ pip install -r requirements.txt
 
 ### Quick Start
 To use ST-GEARS to recover geospatial profile in 3D, you need both expressional and structural information, structured in a list of anndata.Anndata.  Rigid and Elastic registration results are to be added to .obsm, as marked in figure below:
-![dataformat](https://github.com/STOmics/ST-GEARS/assets/96898334/ca6b31c0-fed5-4380-ae53-2d0323d15435)
+![dataformat](https://github.com/STOmics/ST-GEARS/assets/96898334/e34336ce-abc8-4e0c-8615-29b12b2dfa5c)
 
 ```python
 import os
@@ -50,8 +52,8 @@ slicesl = st_gears.stack_slices_pairwise_rigid([slicesl[i] for i in regis_ilist]
 						filter_by_label=filter_by_label)
 
 # elastic registration
-pixel_size = 1  # pixel size of elastic field
-sigma = 1  # kernel size of Gaussian Filters
+pixel_size = 1  # pixel size of elastic field, input a rough average of spots distance here
+sigma = 1  # kernel size of Gaussian Filters, with a higher value indicating a smoother elastic field
 slicesl = st_gears.stack_slices_pairwise_elas_field([slicesl[i] for i in regis_ilist],
                                                     pili,
                                                     label_col='annotation',
