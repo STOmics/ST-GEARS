@@ -24,7 +24,8 @@ pip install -r requirements.txt
 
 ### Quick Start
 To use ST-GEARS to recover geospatial profile in 3D, you need both expressional and structural information, structured in a list of anndata.Anndata.  Rigid and Elastic registration results are to be added to .obsm, as marked in figure below:
-![dataformat](https://github.com/STOmics/ST-GEARS/assets/96898334/e34336ce-abc8-4e0c-8615-29b12b2dfa5c)
+![dataformat](https://github.com/STOmics/ST-GEARS/assets/96898334/be1e121d-e7a5-49db-9b7c-bdd863ba0bc7)
+
 
 ```python
 import os
