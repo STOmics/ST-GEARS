@@ -7,7 +7,7 @@ A Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors
 
 `stack_slices_pairwise_rigid` rigidly aligns sections using Procrustes Analysis
 
-`stack_slices_pairwise_elas_field` eliminates distorsions through Gaussian Smoothed Elastic Fields. Validity proved mathematically
+`stack_slices_pairwise_elas_field` eliminates distorsions through Gaussian Smoothed Elastic Fields. Validity is proved mathematically
 
 ### Installation
 ```python
