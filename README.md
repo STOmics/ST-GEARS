@@ -1,6 +1,6 @@
-
 # ST-GEARS
 A Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors
+
 ![flow](https://github.com/STOmics/ST-GEARS/assets/96898334/6785a509-8b57-43f5-ba19-162ecad7ed1b)
 
 ### Methods
@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 ###Quick Start
 To use ST-GEARS to recover geospatial profile in 3D, you need both expressional and structural information, structured in a list of anndata.Anndata.  Rigid and Elastic registration results are to be added to .obsm, as marked in figure below:
-![dataformat](https://github.com/STOmics/ST-GEARS/assets/96898334/dc5a6e08-9cee-4c6d-9c9f-e776b1234af7)
+![dataformat](https://github.com/STOmics/ST-GEARS/assets/96898334/2e13b078-1e65-4647-9bf1-4c3557ea99f7)
 
 ```python
 import os
