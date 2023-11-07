@@ -3,11 +3,11 @@ A Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors
 ![flow](https://github.com/STOmics/ST-GEARS/assets/96898334/6785a509-8b57-43f5-ba19-162ecad7ed1b)
 
 ### Methods
-- serial_align: solves  probabilistic anchors between adjacent sections in serial, using Optimal Transport with Distributive Constraints, based on both expression and coordinates data
+`serial_align` solves  probabilistic anchors between adjacent sections in serial, using Optimal Transport with Distributive Constraints, based on both expression and coordinates data
 
-- stack_slices_pairwise_rigid: rigidly aligns sections using Procrustes Analysis
+`stack_slices_pairwise_rigid` rigidly aligns sections using Procrustes Analysis
 
-- stack_slices_pairwise_elas_field: eliminates distorsions through Gaussian Smoothed Elastic Fields. Validity proved mathematically
+`stack_slices_pairwise_elas_field` eliminates distorsions through Gaussian Smoothed Elastic Fields. Validity proved mathematically
 
 ### Installation
 ```python
