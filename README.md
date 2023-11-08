@@ -71,3 +71,5 @@ slicesl = st_gears.stack_slices_pairwise_elas_field([slicesl[i] for i in regis_i
 						    sigma=sigma)
 ```
 
+### Demo Tutorial
+https://github.com/STOmics/ST-GEARS/blob/main/demo.ipynb
