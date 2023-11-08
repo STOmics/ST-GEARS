@@ -1,6 +1,3 @@
-[![stars](https://img.shields.io/github/stars/STOmics/ST-GEARS?logo=GitHub&color=yellow)](https://img.shields.io/github/stars/STOmics/ST-GEARS) 
-[![downloads](https://static.pepy.tech/personalized-badge/ST-GEARS?period=total&units=international_system&left_color=grey&right_color=blue&left_text=downloads)](https://pepy.tech/project/ST_GEARS)
-
 # ST-GEARS
 A Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors
 ![flow](https://github.com/STOmics/ST-GEARS/assets/96898334/6785a509-8b57-43f5-ba19-162ecad7ed1b)
