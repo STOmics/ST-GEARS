@@ -50,7 +50,7 @@ pili, tyscoreli, alphali, regis_ilist, ali, bli = st_gears.serial_align(slicesl,
 
 
 # Rigid registration
-fil_pc_rigid = 20  # fil_pc / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
+fil_pc_rigid = 20  # fil_pc_rigid / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
 slicesl = st_gears.stack_slices_pairwise_rigid([slicesl[i] for i in regis_ilist],
 						pili,
 						label_col=grp_col,
@@ -59,7 +59,7 @@ slicesl = st_gears.stack_slices_pairwise_rigid([slicesl[i] for i in regis_ilist]
 
 
 # elastic registration
-fil_pc_elas = 20  # fil_pc / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
+fil_pc_elas = 20  # fil_pc_elas / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
 pixel_size = 1  # pixel size of elastic field, input a rough average of spots distance here
 sigma = 1  # kernel size of Gaussian Filters, with a higher value indicating a smoother elastic field
 slicesl = st_gears.stack_slices_pairwise_elas_field([slicesl[i] for i in regis_ilist],
