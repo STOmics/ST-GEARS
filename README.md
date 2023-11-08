@@ -34,7 +34,7 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-uniform_weight = False  # not to use uniform weight, instead, use Distributive Constraints
+uniform_weight = False  # Set to True if using uniform weight, set to False if using Distributive Constraints
 filter_by_label = True  # Filter groups of spot that do not co-occur in two sections when computing anchors
 grp_col = 'annotation'  # name of column in adata that stores grouping information
 
