@@ -39,7 +39,6 @@ warnings.filterwarnings('ignore')
 uniform_weight = False  # Set to True if using uniform weight, set to False if using Distributive Constraints
 filter_by_label = True  # Filter groups of spot that do not co-occur in two sections when computing anchors
 grp_col = 'annotation'  # name of column in adata that stores grouping information
-
 anncell_cid = st_gears.helper.gen_anncell_cid_from_all(slicesl, grp_col)
 pili, tyscoreli, alphali, regis_ilist, ali, bli = st_gears.serial_align(slicesl, anncell_cid, label_col=grp_col,
                                                                         start_i=0, end_i=len(slicesl)-1,
@@ -52,7 +51,6 @@ pili, tyscoreli, alphali, regis_ilist, ali, bli = st_gears.serial_align(slicesl,
 
 # Rigid registration
 fil_pc_rigid = 20  # fil_pc / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
-
 slicesl = st_gears.stack_slices_pairwise_rigid([slicesl[i] for i in regis_ilist],
 						pili,
 						label_col=grp_col,
@@ -64,7 +62,6 @@ slicesl = st_gears.stack_slices_pairwise_rigid([slicesl[i] for i in regis_ilist]
 fil_pc_elas = 20  # fil_pc / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
 pixel_size = 1  # pixel size of elastic field, input a rough average of spots distance here
 sigma = 1  # kernel size of Gaussian Filters, with a higher value indicating a smoother elastic field
-
 slicesl = st_gears.stack_slices_pairwise_elas_field([slicesl[i] for i in regis_ilist],
                                                     pili,
                                                     label_col=grp_col,
