@@ -38,6 +38,7 @@ uniform_weight = False  # Set to True if using uniform weight, set to False if u
 filter_by_label = True  # Filter groups of spot that do not co-occur in two sections when computing anchors
 grp_col = 'annotation'  # name of column in adata that stores grouping information
 
+
 # Compute anchors
 anncell_cid = st_gears.helper.gen_anncell_cid_from_all(slicesl, grp_col)
 pili, tyscoreli, alphali, regis_ilist, ali, bli = st_gears.serial_align(slicesl, anncell_cid, label_col=grp_col,
@@ -47,6 +48,8 @@ pili, tyscoreli, alphali, regis_ilist, ali, bli = st_gears.serial_align(slicesl,
                                                                         uniform_weight=uniform_weight,
                                                                         filter_by_label=filter_by_label,
                                                                         verbose=True)
+
+
 # Rigid registration
 fil_pc_rigid = 20  # fil_pc / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
 slicesl = st_gears.stack_slices_pairwise_rigid([slicesl[i] for i in regis_ilist],
@@ -54,6 +57,7 @@ slicesl = st_gears.stack_slices_pairwise_rigid([slicesl[i] for i in regis_ilist]
 						label_col=grp_col,
 						fil_pc=fil_pc_rigid,
 						filter_by_label=filter_by_label)
+
 
 # elastic registration
 fil_pc_elas = 20  # fil_pc / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
