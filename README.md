@@ -2,9 +2,9 @@
 A 3D Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors, with accurate position alignment plus distortion correction!
 ![fig1](https://github.com/STOmics/ST-GEARS/assets/96898334/6617eaaf-d6f5-4966-b7da-631d8c08e79d)
 
-ST-GEARS involves methods to compute anchors, to rigidly align and to elastically registrate sections. Specifically, 
+ST-GEARS is equiped with methods to compute anchors, to rigidly align and to elastically registrate sections. Specifically, 
 
-`serial_align` computes  probabilistic anchors between adjacent sections in serial, using Optimal Transport with Distributive Constraints, based on both expression and coordinates data
+`serial_align` computes  probabilistic anchors between adjacent sections in serial, using Fused-Gromov Wasserstein Optimal Transport with our innovatie Distributive Constraints
 
 `stack_slices_pairwise_rigid` rigidly aligns sections using Procrustes Analysis
 
