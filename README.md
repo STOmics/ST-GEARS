@@ -12,7 +12,7 @@ ST-GEARS is equiped with methods to compute anchors, to rigidly align and to ela
 
 `plot_scatter_by_grid` of class `RegisPlotter` plots registrated sections as well as intermediate results, including gene counts, distribution of anchors probability and no., distribution of spot group connected by strongest anchor, and constraints values
 
-Read our article at: [here](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)
+Read our article at: [preprint](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)
 
 ### Installation
 ```python
@@ -26,7 +26,9 @@ pip install -r requirements.txt
 ```
 
 ### Input and Output
-To use ST-GEARS to recover geospatial profile in 3D, you need gene expression matrix, spatial information and a rough grouping of observations, structured in a list of anndata.Anndata. Rigid and Elastic registration results will be added to .obsm by ST-GEARS:
+To use ST-GEARS to recover geospatial profile in 3D, you need gene expression matrix, spatial information and a rough grouping of observations. 
+
+Structure above input in a list of anndata.Anndata of below. Also find rigid and elastic registration results in this structure:
 ![dataformat](https://github.com/STOmics/ST-GEARS/assets/96898334/3db7a908-22db-42d5-bbdf-8f22ebb689e4)
 
 ### Quick Start
