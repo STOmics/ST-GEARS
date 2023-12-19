@@ -2,7 +2,7 @@
 A strong 3D reconstruction tool for Spatial Transcriptomics, with accurate position alignment plus distortion correction!
 ![fig1](https://github.com/STOmics/ST-GEARS/assets/96898334/6617eaaf-d6f5-4966-b7da-631d8c08e79d)
 
-ST-GEARS is equiped with methods to compute anchors, to rigidly align and to elastically registrate sections. Specifically, 
+ST-GEARS consists of methods to compute anchors, to rigidly align and to elastically registrate sections. Specifically, 
 
 `serial_align` computes mappings between adjacent sections in serial, using Fused-Gromov Wasserstein Optimal Transport with our innovatie Distributive Constraints
 
@@ -13,7 +13,7 @@ ST-GEARS is equiped with methods to compute anchors, to rigidly align and to ela
 `plot_scatter_by_grid` of class `RegisPlotter` plots registrated sections as well as intermediate results, including gene counts, distribution of anchors probability and no., distribution of spot group connected by strongest anchor, and constraints values
 
 ### Article
-Read the article at: [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)!
+Read our article at: [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)!
 
 ### Installation
 ```python
