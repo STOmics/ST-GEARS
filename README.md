@@ -2,7 +2,7 @@
 A 3D Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors
 ![fig1](https://github.com/STOmics/ST-GEARS/assets/96898334/6617eaaf-d6f5-4966-b7da-631d8c08e79d)
 
-Our method is preprinted and available at:  https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1
+Our method is preprinted at:  https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1
 
 ### Methods
 `serial_align` computes  probabilistic anchors between adjacent sections in serial, using Optimal Transport with Distributive Constraints, based on both expression and coordinates data
