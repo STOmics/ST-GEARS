@@ -12,7 +12,8 @@ ST-GEARS is equiped with methods to compute anchors, to rigidly align and to ela
 
 `plot_scatter_by_grid` of class `RegisPlotter` plots registrated sections as well as intermediate results, including gene counts, distribution of anchors probability and no., distribution of spot group connected by strongest anchor, and constraints values
 
-Read our article at: [preprint](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)
+### Article
+Read the article at: [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)!
 
 ### Installation
 ```python
@@ -38,7 +39,6 @@ import st_gears
 import warnings
 
 warnings.filterwarnings('ignore')
-
 
 # Compute anchors
 uniform_weight = False  # Set to True if using uniform weight, set to False if using Distributive Constraints
