@@ -1,6 +1,6 @@
 # ST-GEARS
 A Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors
-![flow](https://github.com/STOmics/ST-GEARS/assets/96898334/6785a509-8b57-43f5-ba19-162ecad7ed1b)
+![fig1](https://github.com/STOmics/ST-GEARS/assets/96898334/6617eaaf-d6f5-4966-b7da-631d8c08e79d)
 
 ### Methods
 `serial_align` computes  probabilistic anchors between adjacent sections in serial, using Optimal Transport with Distributive Constraints, based on both expression and coordinates data
