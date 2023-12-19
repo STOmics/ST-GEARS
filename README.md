@@ -1,10 +1,9 @@
 # ST-GEARS
-A 3D Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors
+A 3D Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors, with accurate position alignment plus distortion correction!
 ![fig1](https://github.com/STOmics/ST-GEARS/assets/96898334/6617eaaf-d6f5-4966-b7da-631d8c08e79d)
 
-Our method is preprinted at:  https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1
+ST-GEARS involves methods to compute anchors, to rigidly align and to elastically registrate sections. Specifically, 
 
-### Methods
 `serial_align` computes  probabilistic anchors between adjacent sections in serial, using Optimal Transport with Distributive Constraints, based on both expression and coordinates data
 
 `stack_slices_pairwise_rigid` rigidly aligns sections using Procrustes Analysis
@@ -12,6 +11,9 @@ Our method is preprinted at:  https://www.biorxiv.org/content/10.1101/2023.12.09
 `stack_slices_pairwise_elas_field` eliminates distorsions through Gaussian Smoothed Elastic Fields. Validity is proved mathematically
 
 `plot_scatter_by_grid` of class `RegisPlotter` plots registrated sections as well as intermediate results, including gene counts, distribution of anchors probability and no., distribution of spot group connected by strongest anchor, and constraints values
+
+### News
+Our method is preprinted at: [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)!
 
 ### Installation
 ```python
