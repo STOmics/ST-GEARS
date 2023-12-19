@@ -1,10 +1,10 @@
 # ST-GEARS
-A 3D Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors, with accurate position alignment plus distortion correction!
+A strong 3D reconstruction tool for Spatial Transcriptomics, with accurate position alignment plus distortion correction!
 ![fig1](https://github.com/STOmics/ST-GEARS/assets/96898334/6617eaaf-d6f5-4966-b7da-631d8c08e79d)
 
 ST-GEARS is equiped with methods to compute anchors, to rigidly align and to elastically registrate sections. Specifically, 
 
-`serial_align` computes  probabilistic anchors between adjacent sections in serial, using Fused-Gromov Wasserstein Optimal Transport with our innovatie Distributive Constraints
+`serial_align` computes mappings between adjacent sections in serial, using Fused-Gromov Wasserstein Optimal Transport with our innovatie Distributive Constraints
 
 `stack_slices_pairwise_rigid` rigidly aligns sections using Procrustes Analysis
 
@@ -26,7 +26,7 @@ pip install -r requirements.txt
 ```
 
 ### Input and Output
-To use ST-GEARS to recover geospatial profile in 3D, you need both expressional and structural information, structured in a list of anndata.Anndata. Rigid and Elastic registration results will be added to .obsm by ST-GEARS:
+To use ST-GEARS to recover geospatial profile in 3D, you need gene expression matrix, spatial information and a rough grouping of observations, structured in a list of anndata.Anndata. Rigid and Elastic registration results will be added to .obsm by ST-GEARS:
 ![dataformat](https://github.com/STOmics/ST-GEARS/assets/96898334/3db7a908-22db-42d5-bbdf-8f22ebb689e4)
 
 ### Quick Start
