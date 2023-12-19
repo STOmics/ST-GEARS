@@ -1,6 +1,7 @@
 # ST-GEARS
 A Spatial Transcriptomics Geospatial Profile Recovery Tool through Anchors
-![flow](https://github.com/STOmics/ST-GEARS/assets/96898334/6785a509-8b57-43f5-ba19-162ecad7ed1b)
+![Uploading 1.svg…]()
+
 
 You can read full paper here: https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1
 
