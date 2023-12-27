@@ -46,12 +46,12 @@ filter_by_label = True  # Filter groups of spot that do not co-occur in two sect
 grp_col = 'annotation'  # name of column in adata that stores grouping information
 anncell_cid = st_gears.helper.gen_anncell_cid_from_all(slicesl, grp_col)
 pili, tyscoreli, alphali, regis_ilist, ali, bli = st_gears.serial_align(slicesl, anncell_cid, label_col=grp_col,
-                                                                        start_i=0, end_i=len(slicesl)-1,
-                                                                        tune_alpha_li=[0.8, 0.2, 0.05, 0.013],  # regularization factor list, recommend to fill values exponentially change among 0 and 1. Higher number indicates finer tuning resolution
-                                                                        numItermax=150, 
+                                                                        start_i=0, end_i=len(slicesl)-1,  # index of start and end section from slicesl to be aligned
+                                                                        tune_alpha_li=[0.8, 0.2, 0.05, 0.013],  # regularization factor list, recommend to fill values exponentially change among 0 and 1. Higher number of elements indicates finer tuning resolution
+                                                                        numItermax=150,  # max number of iteration during optimization
                                                                         uniform_weight=uniform_weight,
                                                                         filter_by_label=filter_by_label,
-                                                                        verbose=True)
+                                                                        verbose=True)  # show each iteration or not
 
 
 # Rigid registration
