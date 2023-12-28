@@ -15,6 +15,9 @@ ST-GEARS consists of methods to compute anchors, to rigidly align and to elastic
 ### Article
 Read our article at: [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)!
 
+### News
+we fixed bug of package importing, hence running it should be no problem now.
+
 ### Installation
 ```python
 git clone https://github.com/STOmics/ST-GEARS.git
@@ -25,9 +28,6 @@ pip install .
 
 pip install -r requirements.txt
 ```
-
-### News
-we fixed bug of package importing, hence running it should be no problem now.
 
 ### Input and Output
 To use ST-GEARS to recover geospatial profile in 3D, you need gene expression matrix, spatial information and a rough grouping of observations. 
