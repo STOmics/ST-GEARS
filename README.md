@@ -28,6 +28,7 @@ pip install .
 
 pip install -r requirements.txt
 ```
+Installation was tested on both Windows and Linux os. Typical installation time is less than 3 mins.
 
 ### Input and Output
 To use ST-GEARS to recover geospatial profile in 3D, you need gene expression matrix, spatial information and a rough grouping of observations. 
