@@ -82,3 +82,4 @@ slicesl = st_gears.stack_slices_pairwise_elas_field([slicesl[i] for i in regis_i
 
 ### Demo Tutorial
 https://github.com/STOmics/ST-GEARS/blob/main/demo.ipynb
+Expected run time on a typical quad core Windows is 5 mins.
