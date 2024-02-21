@@ -7,6 +7,7 @@ from typing import List, Tuple
 from anndata import AnnData
 
 from .helper import intersect, filter_pi_mtx, to_dense_array
+from . import tps
 
 
 def filter_rows_cols_to_spa(sliceA, sliceB, filter_by_label, label_col, spaAtype, spaBtype):
