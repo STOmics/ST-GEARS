@@ -128,4 +128,3 @@ def cal_weight(uniform_weight, nx, sliceA, sliceB, label_col, map_method_dis2wei
 
         gc.collect()
     return a, b, a_wei_abs, b_wei_abs
-
