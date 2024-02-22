@@ -295,12 +295,10 @@ class RegisPlotter:
         assert spatype in ['spatial', 'spatial_rigid', 'spatial_elas'], "spatype not in ['spatial', 'spatial_rigid', 'spatial_elas']"
         assert list(set([spatype in slicesl[i].obsm.keys() for i in range(len(slicesl))])) == [True], "Not all slicesl element has {} column".format(spatype)
         assert type(filter_by_label) == bool, "Type of filter_by_label is not bool"
-        assert type(sdir) == str, "Type of sdir is not str"
+        if not sdir is None:
+            assert type(sdir) == str, "Type of sdir is not str, or None"
         assert type(size) in [float, int], "Type of size not in float or string"
         assert size > 0, "size not over 0"
-
-        if not os.path.isdir(sdir):
-            os.makedirs(sdir)
 
         nrows, ncols = self._define_cells(len(slicesl))
 
@@ -332,15 +330,11 @@ class RegisPlotter:
                     pass
             elif ctype == 'weight':
                     self._plot_weight(slicesl, lay_type, i, filter_by_label, label_col, spatype, ali, bli, alphali, tyscoreli, size)
-
         if sdir is None:
             plt.show()
         else:
             if not os.path.isdir(sdir):
                 os.makedirs(sdir)
-
             plt.savefig(os.path.join(sdir, spatype + '_' + ctype+'.jpg'))
+
             plt.close()
-
-
-
