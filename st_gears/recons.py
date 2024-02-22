@@ -7,7 +7,7 @@ from typing import List, Tuple
 from anndata import AnnData
 
 from .helper import intersect, filter_pi_mtx, to_dense_array
-from . import tps
+# from . import tps
 
 
 def filter_rows_cols_to_spa(sliceA, sliceB, filter_by_label, label_col, spaAtype, spaBtype):
@@ -519,7 +519,3 @@ def stack_slices_pairwise_elas_field(
         slice.obsm['spatial_elas'][:, 2] = slice.obsm['spatial'][:, 2]
 
     return slicesl
-
-
-
-
