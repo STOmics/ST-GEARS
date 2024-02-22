@@ -132,28 +132,45 @@ def pairwise_align(
     Fused Gromov Wasserstein OT problem.
     """
 
+    if use_gpu:
+        nx = ot.backend.TorchBackend()
+    else:
+        nx = ot.backend.NumpyBackend()
+
     # 1. calculate parameters
     p, q = ot.utils.list_to_array(a, b)  # 权重矩阵
 
     constC, hC1, hC2 = ot.gromov.init_matrix(D_A, D_B, p, q, 'square_loss')
+
+    if G_init is None:
+        G0 = p[:, None] * q[None, :]
+    else:
+        G0 = (1 / nx.sum(G_init)) * G_init
+
     def f(G):
         return ot.gromov.gwloss(constC, hC1, hC2, G)
+
     def df(G):
         return ot.gromov.gwggrad(constC, hC1, hC2, G)
 
+    def line_search(cost, G, deltaG, Mi, cost_G, **kwargs):
+        return ot.optim.line_search_armijo(cost, G, deltaG, Mi, cost_G, nx=nx, **kwargs)
+
     # 2. Conditional Gradient Descent optimization, to solve Fused Gromov Wasserstein OT problem
+
     # res, log = ot.gromov.cg(p, q, (1 - alpha) * M, alpha, f, df, G_init, numItermax=numItermax, armijo=armijo, C1=C1, C2=C2, constC=constC, log=True, **kwargs)
-    res, log = cg(p, q, (1 - alpha) * M, alpha, f, df, G_init, numItermax=numItermax, armijo=False,
-                  C1=D_A, C2=D_B, constC=constC, verbose=verbose, log=True, **kwargs)
+    # res, log = cg(p, q, (1 - alpha) * M, alpha, f, df, G_init, numItermax=numItermax, armijo=False,
+    #               C1=D_A, C2=D_B, constC=constC, verbose=verbose, log=True, **kwargs)
+
+    tol_rel = 1e-9
+    tol_abs = 1e-9
+    res, log = ot.optim.cg(p, q, (1 - alpha) * M, alpha, f, df, G0, line_search, log=True, numItermax=numItermax,
+                           stopThr=tol_rel, stopThr2=tol_abs, verbose=verbose, **kwargs)
 
     fgw_dist = log['loss'][-1]
     log['fgw_dist'] = fgw_dist
 
     # 3. format the result to numpy
-    if use_gpu:
-        nx = ot.backend.TorchBackend()
-    else:
-        nx = ot.backend.NumpyBackend()
     pi = nx.to_numpy(res)
     obj = nx.to_numpy(log['fgw_dist'])
 
