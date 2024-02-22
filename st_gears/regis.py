@@ -179,7 +179,7 @@ def serial_align(slicesl,
                  label_col,
                  start_i,
                  end_i,
-                 tune_alpha_li=[0.8, 0.4, 0.2, 0.1, 0.05, 0.025, 0.013, 0.006],
+                 tune_alpha_li=[0.2, 0.1, 0.05, 0.025, 0.01, 0.005],
                  numItermax=200,
                  dissimilarity_val='kl',
                  uniform_weight=False,
@@ -376,5 +376,3 @@ def serial_align(slicesl,
         torch.cuda.empty_cache()
 
     return pili, tyscoreli, alphali, regis_ilist, ali, bli
-
-
