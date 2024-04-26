@@ -10,8 +10,6 @@ ST-GEARS consists of methods to compute anchors, to rigidly align and to elastic
 
 `stack_slices_pairwise_elas_field` eliminates distorsions through Gaussian Smoothed Elastic Fields. Validity is proved mathematically
 
-`plot_scatter_by_grid` of class `RegisPlotter` plots registrated sections as well as intermediate results, including gene counts, distribution of anchors probability and no., distribution of spot group connected by strongest anchor, and constraints values
-
 ### Article
 Read our article at: [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)!
 
