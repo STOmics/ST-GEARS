@@ -1,0 +1,118 @@
+Six functions are provided by ST-GEARS for users to easily conduct 3D spatial profile recovery of Spatial Transcriptomics data.
+
+1. Function: serial_align
+
+    Compute numerical optimization for a serial of slices (AnnData), and return a serial of probabilistic transition matrices.
+    
+    In the end of computation, probabilities ranked in the last 10% in transition matrix are filtered.
+
+ Parameters:
+
+    slicesl: [slice0, slice1, slice2, ...], every element is AnnData. adata.X stores normalized expression matrix, with rows
+            indicate cells or binsets, while columnw indicate genes.
+    anncell_cid: Dictionary that maps annotated cell types to id starting from 0.
+    label_col: String of column name in .obs, where annotated cell types are stored.
+    start_i: Index in slicesl of the first slice to be registered. Slices ranked before it will not be registered, or
+            visualized the the following protocol.
+    end_i: Index in slicesl of the last slice to be registered. Slices ranked after it will not be registered, or
+            visualized the the following protocol.
+    tune_alpha_li: List of regularization factor in Fused Gromov Wasserstin (FGW) OT problem formulation, to be
+                   automatically tunned. Refer to this paper for the FGW formulation:
+                   Optimal transport for structured data with application on graphs. T Vayer, L Chapel, R Flamary,
+                   R Tavenard… - arXiv preprint arXiv …, 2018 - arxiv.org
+    numItermax: Max number of iterations.
+    dissimilarity_val: Matrix to calculate feature similarity. Choose between 'kl' for Kullback-Leibler Divergence,
+                       and 'euc'/'euclidean' for euclidean distance.
+    uniform_weight: Whether to assign same margin weights to every spots. Choose between True and False.
+    dissimilarity_weight_val：Matrix to calculate cell types feature similarity when assigning weighted boundary conditions
+                             for margin constrains. Refer to our paper for more details. Only assign when uniform_weight is False.
+    map_method_dis2wei: Methood to map cell types feature similarity to margin weighhts. Choose between linear' and 'logistic'.
+                        Only assign when uniform_weight is False.
+    filter_by_label: Where to filter out spots not appearing in its registered slice, so it won't interfere with the ot
+                     solving process.
+    use_gpu: Whether to use GPU or not, in the parameter calculation process. OT solving process is only built on CPU.
+    verbose：To print the OT solving process of each iteration.
+
+  Output：
+    pili：List of probabilistic transition matrix solved. The order is the same as slices in slicesl. Number of element of
+          pili is one less than slicesl.
+    tyscoreli：List of LTARI score of each transition matrix. The order is the same as slices in slicesl. Number of
+               element of pili is one less than slicesl.
+    alphali：List of alpha value that was chosen and used for each pair of slices, among tune_alpha_li provided by users.
+    regis_ilist：List of index of registered slices.
+    ali: List of margin weights of the first slice of slice pairs. Each pair corresponds to an element of the list.
+    bli: List of margin weights of the second slice of slice pairs. Each pair corresponds to an element of the list.
+    
+2. Function: stack_slices_pairwise_rigid
+
+    Stack slices by Proscrutes Analysis, in accordance to the order of slices.
+
+    Align 2nd to 1st slice, then 3rd to the transformed 2nd slice, etc.
+
+ Parameters:
+        slicesl: list of raw slices
+        pis: list of pi(s)
+        label_col: column name of adata.obs that stores annotated celltypes
+        fil_pc: percentage of ranked probabilities in transition matrix, after which probabilities will be filtered.
+        filter_by_label: if spots were filtered acordding to annotation, in the ot solving process, or not
+
+  Output：
+        rigid registration result saved in adata.obsm['spatial_rigid']
+
+3. Function: stack_slices_pairwise_elas_field
+
+    Register slices in elastic way, in accordance to the order of slices.
+
+    Each slice is elastically registered according to its transition matrix with previous and with next slice; while the
+    first and last slice are registered only according to its transition matrix with its adjacent slice.
+
+ Parameters:
+        slicesl: list of rigid registered slices
+        pis: list of probabilistic transition matrix
+        label_col:  column name of adata.obs that stores annotated celltypes
+        pixel_size: edge length of single pixel, when generating elastic field. Input a rough average of spots distance here
+        fil_pc: percentage of ranked probabilities in transition matrix, after which probabilities will be filtered.
+        filter_by_label: if spots were filtered acordding to annotation, in the ot solving process, or not
+        sigma: sigma value of gaussina kernel, when filtering noises in elastic registration field, with a higher value
+            indicating a smoother elastic field. Refer to this website to decide sigma according to your desired range of convolution.
+            http://demofox.org/gauss.html
+
+  Output：
+        elastic registration result saved in adata.obsm['spatial_elas']
+
+4. Function: binning
+    Binning process of granularity adjusting, which grids the spatial range of a section by assigned step size, then sum
+    up gene expression to a representative spot of each grid, and label the spot with most frequent annotation type or cluster.
+
+    Previous spatial profile, and new location stored adata.obsm['spatial']
+
+ Parameters:
+        adata: AnnData.anndata
+        ctype_col: cluster or annotation type stored in adata.obs[ctype_col]
+        pixsize: step size. each grid has size of pixsize x pixsize	
+
+  output：
+        AnnData.anndata, with coarse resolution
+
+5. Function: interpolate
+    The interpolation step in granularity adjusting, where the original resolution data is interpolated into the
+    pre-registered and registered coarse dataset, leading to registration result in original resolution
+
+ Parameters:
+        com_slicesl: list of AnnData.anndata which stores information of coarse data on which ST-GEARS is implemented on
+        reuse_slicesl: list of AnnData.anndata which stores information of original data on which ST-GEARS has not been implemented on
+  Output：
+        reuse_slicesl, registration result by interpolatioj is stored on adata.obsm['spatial_elas_reuse']
+
+6. Function: calculate_max_kl
+    To calculate probabilistic distribution of number of spots on different clusters or annotations for each section,
+    then measure Kullback-Leibler (KL) divergence of the distribution between closest section pairs .
+ 
+ Parameters:   
+        slicesl: list of AnnData.adata
+        ctype_col: cluster or annotation type stored in adata.obs[ctype_col]
+
+  Output：
+        maximum kl divergence
+
+
