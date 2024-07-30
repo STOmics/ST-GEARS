@@ -1,4 +1,5 @@
 # ST-GEARS
+[![DOI](https://zenodo.org/badge/714884140.svg)](https://zenodo.org/doi/10.5281/zenodo.13131712)
 A strong 3D reconstruction tool for Spatial Transcriptomics, with accurate position alignment plus distortion correction!
 ![fig1](https://github.com/STOmics/ST-GEARS/assets/96898334/6617eaaf-d6f5-4966-b7da-631d8c08e79d)
 
