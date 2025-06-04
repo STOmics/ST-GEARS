@@ -100,4 +100,4 @@ else:
 
 ### Demo Tutorial
 https://github.com/STOmics/ST-GEARS/blob/main/demo.ipynb
-Expected run time on a typical quad core Windows is 5 mins.
+Expected run time on a typical quad core Windows in 5 mins.
