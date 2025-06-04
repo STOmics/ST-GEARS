@@ -54,7 +54,7 @@ filter_by_label = True  # Filter groups of spot that do not co-occur in two sect
 
 # binning
 if binning_on:
-    step = 2  # step size for binning. Check your xy coordinates first. For example, when spots roughly sits 10 away from each other, setting step to 20 would decrease spots for 4 times in binning result. Make sure of at least 200 spots in each section after binning.
+    step = 2  # step size for binning. Check your xy coordinates first. For example, when adjacent spots roughly sits 10 away from each other, setting step to 20 would decrease spots for 4 times in binning result. Remain roughly at least 200 spots in each section after binning.
     slice_srk_li = [st_gears.binning(slice_, grp_col, step) for slice_ in slicesl]  # 'slice_srk_li' means 'shrinked slice list'
 else:
     slice_srk_li = slicesl
@@ -81,7 +81,7 @@ slice_srk_li = st_gears.stack_slices_pairwise_rigid([slice_srk_li[i] for i in re
 
 
 # elastic registration
-pixel_size = 1  # pixel size of elastic field, input here rough distance between spots. 
+pixel_size = 1  # pixel size of elastic field, input here rough distance between adjacent spots on each section. 
 sigma = 1  # not recommended to change. kernel size of Gaussian Filters, with a higher value indicating a smoother elastic field
 slice_srk_li = st_gears.stack_slices_pairwise_elas_field([slice_srk_li[i] for i in regis_ilist],
                                                           pili,
