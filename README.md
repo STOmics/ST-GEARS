@@ -45,40 +45,49 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-# Compute anchors
-uniform_weight = False  # Set to True if using uniform weight, set to False if using Distributive Constraints
+grp_col = 'annotation'  # name of column in adata that stores grouping information, either cluster or annotation information
+
+# set uniform_weight to False and filter_by_label to True if you trust in your groupping result, and sections are not too far from each other. Otherwise set uniform_weight to True and filter_by_label to False.
+uniform_weight = False  # False if using Distributive Constraints, else True
 filter_by_label = True  # Filter groups of spot that do not co-occur in two sections when computing anchors
-grp_col = 'annotation'  # name of column in adata that stores grouping information
-anncell_cid = st_gears.helper.gen_anncell_cid_from_all(slicesl, grp_col)
-pili, tyscoreli, alphali, regis_ilist, ali, bli = st_gears.serial_align(slicesl, anncell_cid, label_col=grp_col,
+
+# binning
+step = 2  # step size for binning. For example, when spots roughly sits 10 away from each other, setting step to 20 would decrease computation for 4 times less than 'un-binning' version.
+slice_srk_li = [st_gears.binning(slice_, grp_col, step) for slice_ in slicesl]  # 'slice_srk_li' means 'shrinked slice list'
+
+# Compute anchors
+anncell_cid = st_gears.helper.gen_anncell_cid_from_all(slice_srk_li, grp_col)
+pili, tyscoreli, alphali, regis_ilist, ali, bli = st_gears.serial_align(slice_srk_li, anncell_cid, label_col=grp_col,
                                                                         start_i=0, end_i=len(slicesl)-1,  # index of start and end section from slicesl to be aligned
-                                                                        tune_alpha_li=[0.8, 0.2, 0.05, 0.013],  # regularization factor list, recommend to fill values exponentially change among 0 and 1. Higher number of elements indicates finer tuning resolution
-                                                                        numItermax=150,  # max number of iteration during optimization
-                                                                        uniform_weight=uniform_weight,
+                                                                        tune_alpha_li=[0.8, 0.2, 0.05, 0.013],  # regularization factor list, recommend to fill values exponentially change among 0 and 1. Longer list indicates finer tuning resolution
+                                                                        numItermax=200,  # max number of iteration during optimization
+                                                                        dissimilarity_val='kl', dissimilarity_weight_val='kl',
+                                                                        uniform_weight=uniform_weight, map_method_dis2wei='logistic',
                                                                         filter_by_label=filter_by_label,
-                                                                        verbose=True)  # show each iteration or not
+                                                                        use_gpu=False, verbose=True)  # show each iteration or not
 
 
 # Rigid registration
-fil_pc_rigid = 20  # fil_pc_rigid / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
-slicesl = st_gears.stack_slices_pairwise_rigid([slicesl[i] for i in regis_ilist],
-						pili,
-						label_col=grp_col,
-						fil_pc=fil_pc_rigid,
-						filter_by_label=filter_by_label)
+fil_pc = 20  # not recommended to change # fil_pc_rigid / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
+slice_srk_li = st_gears.stack_slices_pairwise_rigid([slice_srk_li[i] for i in regis_ilist],
+						     pili,
+						     label_col=grp_col,
+                                                     fil_pc=fil_pc,
+						     filter_by_label=filter_by_label)
 
 
 # elastic registration
-fil_pc_elas = 20  # fil_pc_elas / 100 * (maximum_probability - minimum_probability) + minimum_probability is set as theshhold to filter anchors
-pixel_size = 1  # pixel size of elastic field, input a rough average of spots distance here
-sigma = 1  # kernel size of Gaussian Filters, with a higher value indicating a smoother elastic field
-slicesl = st_gears.stack_slices_pairwise_elas_field([slicesl[i] for i in regis_ilist],
-                                                    pili,
-                                                    label_col=grp_col,
-                                                    pixel_size=pixel_size,
-						    fil_pc=fil_pc_elas,
-                                                    filter_by_label=filter_by_label,
-						    sigma=sigma)
+pixel_size = 1  # pixel size of elastic field, input a rough average between spots distance here
+sigma = 1  # Not recommended to change. kernel size of Gaussian Filters, with a higher value indicating a smoother elastic field
+slice_srk_li = st_gears.stack_slices_pairwise_elas_field([slice_srk_li[i] for i in regis_ilist],
+                                                          pili,
+                                                          label_col=grp_col,
+                                                          pixel_size=pixel_size,
+						          fil_pc=fil_pc,
+                                                          filter_by_label=filter_by_label,
+						          sigma=sigma)
+
+slicesl = st_gears.interpolate(slice_srk_li, slicesl)
 ```
 
 ### Demo Tutorial
