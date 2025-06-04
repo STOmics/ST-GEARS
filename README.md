@@ -35,7 +35,8 @@ Installation was tested on both Windows and Linux os. Typical installation time 
 To use ST-GEARS to recover geospatial profile in 3D, you need gene expression matrix, spatial information and a rough grouping of observations. 
 
 Structure above input in a list of anndata.Anndata of below. Also find rigid and elastic registration results in this structure:
-![image](https://github.com/user-attachments/assets/509a005c-525b-4d35-8feb-c55f28ec1dc7)
+![image](https://github.com/user-attachments/assets/861a99d7-004b-42d4-9689-6289c0328a9a)
+
 
 ### Quick Start
 ```python
