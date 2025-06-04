@@ -45,7 +45,7 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-grp_col = 'annotation'  # name of column in adata that stores grouping information, either cluster or annotation information
+grp_col = 'annotation'  # name of column in adata.obs that stores grouping information, either cluster or annotation information
 binning_on = True  # only turn granularity adjusting on, when you have over 3000 spots in any one of the sections.
 
 # set uniform_weight to False and filter_by_label to True if you trust in your groupping result, and sections are not too far from each other. Otherwise set uniform_weight to True and filter_by_label to False.
