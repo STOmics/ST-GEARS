@@ -46,14 +46,18 @@ import warnings
 warnings.filterwarnings('ignore')
 
 grp_col = 'annotation'  # name of column in adata that stores grouping information, either cluster or annotation information
+binning_on = 'True'  # only turn granularity adjusting on, when you have over 3000 spots in any one of the sections 
 
 # set uniform_weight to False and filter_by_label to True if you trust in your groupping result, and sections are not too far from each other. Otherwise set uniform_weight to True and filter_by_label to False.
 uniform_weight = False  # False if using Distributive Constraints, else True
 filter_by_label = True  # Filter groups of spot that do not co-occur in two sections when computing anchors
 
 # binning
-step = 2  # step size for binning. For example, when spots roughly sits 10 away from each other, setting step to 20 would decrease computation for 4 times less than 'un-binning' version.
-slice_srk_li = [st_gears.binning(slice_, grp_col, step) for slice_ in slicesl]  # 'slice_srk_li' means 'shrinked slice list'
+if binning_on:
+    step = 2  # step size for binning. For example, when spots roughly sits 10 away from each other, setting step to 20 would decrease computation for 4 times less than 'un-binning' version.
+    slice_srk_li = [st_gears.binning(slice_, grp_col, step) for slice_ in slicesl]  # 'slice_srk_li' means 'shrinked slice list'
+else:
+    slice_srk_li = slicesl
 
 # Compute anchors
 anncell_cid = st_gears.helper.gen_anncell_cid_from_all(slice_srk_li, grp_col)
@@ -78,7 +82,7 @@ slice_srk_li = st_gears.stack_slices_pairwise_rigid([slice_srk_li[i] for i in re
 
 # elastic registration
 pixel_size = 1  # pixel size of elastic field, input a rough average between spots distance here
-sigma = 1  # Not recommended to change. kernel size of Gaussian Filters, with a higher value indicating a smoother elastic field
+sigma = 1  # not recommended to change. kernel size of Gaussian Filters, with a higher value indicating a smoother elastic field
 slice_srk_li = st_gears.stack_slices_pairwise_elas_field([slice_srk_li[i] for i in regis_ilist],
                                                           pili,
                                                           label_col=grp_col,
@@ -87,7 +91,11 @@ slice_srk_li = st_gears.stack_slices_pairwise_elas_field([slice_srk_li[i] for i 
                                                           filter_by_label=filter_by_label,
 						          sigma=sigma)
 
-slicesl = st_gears.interpolate(slice_srk_li, slicesl)
+# interpolate reconstruction result, back to original resolution
+if binning_on:
+    slicesl = st_gears.interpolate(slice_srk_li, slicesl)
+else:
+    slicesl = slice_srk_li
 ```
 
 ### Demo Tutorial
