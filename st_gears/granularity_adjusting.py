@@ -89,13 +89,13 @@ def interpolate(com_slicesl, reuse_slicesl):
         dx_interp = scipy.interpolate.griddata(slice_com.obsm['spatial'][:, :2],
                                                slice_com.obsm['spatial_elas'][:, 0] - slice_com.obsm['spatial'][:, 0],
                                                slice_re.obsm['spatial'][:, :2],
-                                               method='nearest')
+                                               method='linear')
         x_interp = slice_re.obsm['spatial'][:, 0] + dx_interp
 
         dy_interp = scipy.interpolate.griddata(slice_com.obsm['spatial'][:, :2],
                                                slice_com.obsm['spatial_elas'][:, 1] - slice_com.obsm['spatial'][:, 1],
                                                slice_re.obsm['spatial'][:, :2],
-                                               method='nearest')
+                                               method='linear')
         y_interp = slice_re.obsm['spatial'][:, 1] + dy_interp
 
         xy_interp = np.concatenate([np.expand_dims(x_interp, axis=1), np.expand_dims(y_interp, axis=1)], axis=1)
