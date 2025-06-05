@@ -83,9 +83,9 @@ slice_srk_li = st_gears.stack_slices_pairwise_rigid([slice_srk_li[i] for i in re
 
 # elastic registration
 if binning_on:
-    pixel_size = step
+    pixel_size = step  # pixel step size of elastic field. 
 else:
-    pixel_size = 1  # pixel step size of elastic field. if not binned, input rough distance between adjacent spots on each section. 
+    pixel_size = 1  # if not binned, input rough distance between adjacent spots on each section. 
 sigma = 1  # not recommended to change. kernel size of Gaussian Filters, with a higher value indicating a smoother elastic field
 slice_srk_li = st_gears.stack_slices_pairwise_elas_field([slice_srk_li[i] for i in regis_ilist],
                                                           pili,
