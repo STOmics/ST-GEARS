@@ -38,7 +38,7 @@ Structure above input in a list of anndata.Anndata of below. Also find rigid and
 ![image](https://github.com/user-attachments/assets/861a99d7-004b-42d4-9689-6289c0328a9a)
 
 
-### Quick Start
+### Our Recipe
 ```python
 import os
 import st_gears
