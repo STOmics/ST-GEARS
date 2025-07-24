@@ -16,7 +16,7 @@ ST-GEARS consists of methods to compute anchors, to rigidly align and to elastic
 Read our article at: [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.12.09.570320v1)!
 
 ### News
-we added granularity adjusting to README. It really helps when you have over 3000 in any one of sections.
+We just added granularity adjusting to README. It really helps when you have over 3000 in any one of your sections.
 
 ### Installation
 ```python
