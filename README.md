@@ -13,7 +13,7 @@ ST-GEARS consists of methods to compute anchors, to rigidly align and to elastic
 `stack_slices_pairwise_elas_field` eliminates distorsions through Gaussian Smoothed Elastic Fields. Validity is proved mathematically
 
 ### Article
-Our article is published at: [Nature Communications]([https://www.nature.com/articles/s41467-024-51935-0])
+Our article is published at: [Nature Communications](https://www.nature.com/articles/s41467-024-51935-0)
 
 ### News
 We just added granularity adjusting to README. It really helps when you have over 3000 in any one of your sections.
